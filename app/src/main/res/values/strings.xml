@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">StartDroid21 Online Shopping</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_maps" translatable="false">MapsActivity</string>
+    <string name="make_order">Make Order</string>
+    <string name="confirm_address">Confirm Address</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="delivery_address">Delivery address</string>
+    <string name="comment">Comment</string>
+</resources>

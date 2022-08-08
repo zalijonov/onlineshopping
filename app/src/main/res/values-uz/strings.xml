@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StartDroid21 Online Shopping</string>
+    <string name="make_order">Buyurtma berish</string>
+    <string name="confirm_address">Manzilni tasdiqlash</string>
+    <string name="add_to_cart">Savatchaga qo\'shish</string>
+    <string name="delivery_address">Yetkazish manzili</string>
+    <string name="comment">Izoh</string>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/actionHome">
+
+    <fragment
+        android:id="@+id/actionCart"
+        android:name="uz.alijonovz.startdroid21onlineshopping.screen.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_profileFragment"
+            app:destination="@id/actionProfile" />
+        <action
+            android:id="@+id/action_cartFragment_to_favoriteFragment"
+            app:destination="@id/actionFav" />
+        <action
+            android:id="@+id/action_cartFragment_to_homeFragment"
+            app:destination="@id/actionHome" />
+    </fragment>
+    <fragment
+        android:id="@+id/actionHome"
+        android:name="uz.alijonovz.startdroid21onlineshopping.screen.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_favoriteFragment"
+            app:destination="@id/actionFav" />
+        <actioactionFavn
+            android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/actionCart" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/actionProfile" />
+        <action
+            android:id="@+id/action_actionHome_to_actionCart"
+            app:destination="@id/actionCart" />
+    </fragment>
+    <fragment
+        android:id="@+id/actionFav"
+        android:name="uz.alijonovz.startdroid21onlineshopping.screen.favorite.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_homeFragment"
+            app:destination="@id/actionHome" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_profileFragment"
+            app:destination="@id/actionProfile" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_cartFragment2"
+            app:destination="@id/actionCart" />
+    </fragment>
+    <fragment
+        android:id="@+id/actionProfile"
+        android:name="uz.alijonovz.startdroid21onlineshopping.screen.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/actionHome" />
+        <action
+            android:id="@+id/action_profileFragment_to_cartFragment"
+            app:destination="@id/actionCart" />
+        <action
+            android:id="@+id/action_profileFragment_to_favoriteFragment"
+            app:destination="@id/actionFav" />
+    </fragment>
+</navigation>
