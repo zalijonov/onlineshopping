@@ -18,7 +18,7 @@ class ProductDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var count =0
+        var count = 0
         binding.cardViewBack.setOnClickListener {
             finish()
         }
