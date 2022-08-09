@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "283801773341",
+    "project_id": "startdroid21-online-shopping",
+    "storage_bucket": "startdroid21-online-shopping.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283801773341:android:1fe6e99e33bdcda0ecedf4",
+        "android_client_info": {
+          "package_name": "uz.alijonovz.startdroid21onlineshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283801773341-u97hiclili46bfp331n2eq0cnladq2um.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW2rf8SdL5_GfLWajVhKLEK4oK00ENAdo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283801773341-u97hiclili46bfp331n2eq0cnladq2um.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

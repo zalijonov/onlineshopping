@@ -8,6 +8,7 @@ import java.util.ArrayList
 object PrefUtils {
     const val PREF_FAVORITES = "pref_favorites"
     const val PREF_CART = "pref_cart"
+    const val PREF_FCM_TOKEN = "pref_fcm_token"
 
     fun setFavorite(item: ProductModel){
         val items = Hawk.get(PREF_FAVORITES, arrayListOf<Int>())
@@ -54,5 +55,13 @@ object PrefUtils {
     fun getCartCount(item: ProductModel): Int{
         val items = Hawk.get<ArrayList<CartModel>>(PREF_CART, arrayListOf())
         return items.filter {it.product_id == item.id}.firstOrNull()?.count ?: 0
+    }
+
+    fun setFCMToken(value: String){
+        Hawk.put(PREF_FCM_TOKEN, value)
+    }
+
+    fun getFCMToken(): String{
+        return Hawk.get(PREF_FCM_TOKEN,"")
     }
 }
