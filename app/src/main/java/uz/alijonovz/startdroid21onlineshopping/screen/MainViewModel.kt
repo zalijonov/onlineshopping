@@ -2,6 +2,11 @@ package uz.alijonovz.startdroid21onlineshopping.screen
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import uz.alijonovz.startdroid21onlineshopping.api.db.AppDatabase
 import uz.alijonovz.startdroid21onlineshopping.api.repository.ShopRepository
 import uz.alijonovz.startdroid21onlineshopping.model.CategoryModel
 import uz.alijonovz.startdroid21onlineshopping.model.OfferModel
@@ -39,5 +44,30 @@ class MainViewModel: ViewModel() {
 
     fun loadFavProductsByIds(ids: List<Int>){
         repository.loadFavProductsByIds(ids, error, progress, topProductData)
+    }
+
+    fun insertAllProducts2DB(items: List<ProductModel>){
+        CoroutineScope(Dispatchers.IO).launch{
+            AppDatabase.getDatabase().getProductDao().deleteAll()
+            AppDatabase.getDatabase().getProductDao().insertAll(items)
+        }
+    }
+
+    fun insertAllCategories2DB(items: List<CategoryModel>){
+        CoroutineScope(Dispatchers.IO).launch{
+            AppDatabase.getDatabase().getCategoryDao().deleteAll()
+            AppDatabase.getDatabase().getCategoryDao().insertAll(items)
+        }
+    }
+
+    fun loadAllDBProducts(){
+        CoroutineScope(Dispatchers.Main).launch{
+            topProductData.value = withContext(Dispatchers.IO){AppDatabase.getDatabase().getProductDao().getAllProducts()}!!
+        }
+    }
+    fun loadAllDBCategories(){
+        CoroutineScope(Dispatchers.Main).launch{
+            categoriesData.value = withContext(Dispatchers.IO){AppDatabase.getDatabase().getCategoryDao().getAllCategories()}!!
+        }
     }
 }

@@ -72,10 +72,11 @@ class HomeFragment : Fragment() {
     }
 
     fun loadData(){
-
-        viewModel.loadCategories()
+//        viewModel.loadCategories()
         viewModel.loadOffers()
-        viewModel.loadTopProducts()
+//        viewModel.loadTopProducts()
+        viewModel.loadAllDBProducts()
+        viewModel.loadAllDBCategories()
 
     }
 

@@ -41,14 +41,7 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.btnAddToCart.setOnClickListener {
             count=1
             item.cartCount=count
-            PrefUtils.setCart(ProductModel(
-                item.id,
-                item.name,
-                item.price,
-                item.image,
-                item.category_id,
-                item.cartCount
-            ))
+            PrefUtils.setCart(item)
             Toast.makeText(this, "Product added to cart", Toast.LENGTH_LONG).show()
             finish()
         }
