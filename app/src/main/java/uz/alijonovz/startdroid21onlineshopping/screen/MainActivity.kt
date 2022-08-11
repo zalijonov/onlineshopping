@@ -10,7 +10,6 @@ import androidx.navigation.ui.NavigationUI
 import uz.alijonovz.startdroid21onlineshopping.R
 import uz.alijonovz.startdroid21onlineshopping.databinding.ActivityMainBinding
 import uz.alijonovz.startdroid21onlineshopping.screen.changelanguage.ChangeLanguageFragment
-import uz.alijonovz.startdroid21onlineshopping.screen.home.HomeFragment
 import uz.alijonovz.startdroid21onlineshopping.utils.LocaleManager
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.error.observe(this, Observer{
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         })
+
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.flContainer) as NavHostFragment

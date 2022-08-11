@@ -14,7 +14,6 @@ import uz.alijonovz.startdroid21onlineshopping.databinding.FragmentHomeBinding
 import uz.alijonovz.startdroid21onlineshopping.model.CategoryModel
 import uz.alijonovz.startdroid21onlineshopping.screen.MainViewModel
 
-
 class HomeFragment : Fragment() {
 
     lateinit var binding: FragmentHomeBinding
