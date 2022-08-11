@@ -87,5 +87,7 @@ dependencies {
     kapt("androidx.room:room-compiler:2.4.3")
 
     implementation('org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4')
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
 }

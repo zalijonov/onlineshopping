@@ -29,6 +29,7 @@ class CartFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,6 +72,7 @@ class CartFragment : Fragment() {
     fun loadData(){
         viewModel.loadProductByIds(PrefUtils.getCartList().map{it.product_id})
     }
+
     companion object {
 
         @JvmStatic
