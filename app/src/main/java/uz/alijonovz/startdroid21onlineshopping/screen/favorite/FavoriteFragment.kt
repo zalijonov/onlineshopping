@@ -34,6 +34,7 @@ class FavoriteFragment : Fragment() {
             binding.swipe.isRefreshing = it
         })
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
