@@ -29,7 +29,7 @@ class ProductAdapter(var items: List<ProductModel>):RecyclerView.Adapter<Product
 
 
         holder.binding.tvPrice.text = item.price
-        holder.binding.tvCategory.text = item.category_id.toString()
+        holder.binding.tvCategory.text = item.category_id
         holder.binding.tvTitle.text = item.name
 
         Glide.with(holder.itemView.context).load(Constants.HOST_IMAGE+item.image).into(holder.binding.ivProduct)
