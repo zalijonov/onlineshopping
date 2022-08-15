@@ -60,7 +60,6 @@ class FavoriteFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() =
-            FavoriteFragment()
+        fun newInstance() = FavoriteFragment()
     }
 }
