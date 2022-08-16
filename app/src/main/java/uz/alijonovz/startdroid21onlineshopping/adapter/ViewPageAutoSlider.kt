@@ -24,7 +24,7 @@ fun ViewPager.autoScroll(interval: Long) {
         }
     }
 
-    addOnPageChangeListener(object: ViewPager.OnPageChangeListener {
+    addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
         override fun onPageSelected(position: Int) {
             // Updating "scroll position" when user scrolls manually
             scrollPosition = position + 1

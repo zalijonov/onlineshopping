@@ -2,8 +2,8 @@ package uz.alijonovz.startdroid21onlineshopping.screen.makeorder
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import uz.alijonovz.startdroid21onlineshopping.MapsActivity
@@ -24,34 +24,36 @@ class MakeOrderActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         items = intent.getSerializableExtra(Constants.EXTRA_DATA) as List<ProductModel>
-        if(!EventBus.getDefault().isRegistered((this))){
+        if (!EventBus.getDefault().isRegistered((this))) {
             EventBus.getDefault().register(this)
         }
 
         var df = DecimalFormat("#.###")
         df.roundingMode = RoundingMode.DOWN
-        var s = items.sumOf {it.cartCount.toDouble() * (it.price.replace(" ","").toDoubleOrNull() ?: 0.0)}
-            binding.tvTotalAmount.text = df.format(s)
+        var s = items.sumOf {
+            it.cartCount.toDouble() * (it.price.replace(" ", "").toDoubleOrNull() ?: 0.0)
+        }
+        binding.tvTotalAmount.text = df.format(s)
 
-        binding.edAddress.setOnClickListener{
+        binding.edAddress.setOnClickListener {
             startActivity(Intent(this, MapsActivity::class.java))
         }
 
-        binding.cardViewBack.setOnClickListener{
+        binding.cardViewBack.setOnClickListener {
             finish()
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if(EventBus.getDefault().isRegistered(this)){
+        if (EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().unregister(this)
         }
     }
 
     @SuppressLint("SetTextI18n")
     @Subscribe
-    fun onEvent(address:AddressModel){
+    fun onEvent(address: AddressModel) {
         this.address = address
         binding.edAddress.setText("${address.latitude}, ${address.longitude}")
     }

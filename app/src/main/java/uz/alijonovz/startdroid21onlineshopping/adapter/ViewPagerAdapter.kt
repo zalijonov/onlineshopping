@@ -12,7 +12,7 @@ import uz.alijonovz.startdroid21onlineshopping.R
 import uz.alijonovz.startdroid21onlineshopping.model.OfferModel
 import java.util.*
 
-class ViewPagerAdapter(val context: Context, var items: List<OfferModel>): PagerAdapter() {
+class ViewPagerAdapter(val context: Context, var items: List<OfferModel>) : PagerAdapter() {
     override fun getCount(): Int {
         return items.count()
     }
@@ -22,11 +22,13 @@ class ViewPagerAdapter(val context: Context, var items: List<OfferModel>): Pager
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val mLayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val mLayoutInflater =
+            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
         val itemView: View = mLayoutInflater.inflate(R.layout.image_slider_item, container, false)
 
-        Glide.with(context).load("http://osonsavdo.devapp.uz/images/${items[position].image}").into(itemView.findViewById<ImageView>(R.id.tvImage))
+        Glide.with(context).load("http://osonsavdo.devapp.uz/images/${items[position].image}")
+            .into(itemView.findViewById<ImageView>(R.id.tvImage))
 
         Objects.requireNonNull(container).addView(itemView)
 

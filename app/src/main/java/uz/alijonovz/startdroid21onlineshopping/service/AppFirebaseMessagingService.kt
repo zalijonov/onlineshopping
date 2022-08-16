@@ -19,9 +19,8 @@ import uz.alijonovz.startdroid21onlineshopping.BuildConfig
 import uz.alijonovz.startdroid21onlineshopping.R
 import uz.alijonovz.startdroid21onlineshopping.screen.MainActivity
 import uz.alijonovz.startdroid21onlineshopping.utils.PrefUtils
-import java.lang.Exception
 
-class AppFirebaseMessagingService: FirebaseMessagingService() {
+class AppFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         Log.d("tag-debug : ", token)
@@ -29,7 +28,7 @@ class AppFirebaseMessagingService: FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-        try{
+        try {
             Log.d("tag-debug : body ", remoteMessage?.notification?.body.toString())
             Log.d("tag-debug : title ", remoteMessage?.notification?.title.toString())
             val title = remoteMessage.notification?.title
@@ -38,13 +37,19 @@ class AppFirebaseMessagingService: FirebaseMessagingService() {
                 title ?: "",
                 body ?: ""
             )
-        } catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    fun showMessage(title: String, body:String, id: Long = System.currentTimeMillis(), withSound: Boolean = false){
-        val defaultSoundUri: Uri? = if (withSound) RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION) else null
+    fun showMessage(
+        title: String,
+        body: String,
+        id: Long = System.currentTimeMillis(),
+        withSound: Boolean = false
+    ) {
+        val defaultSoundUri: Uri? =
+            if (withSound) RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION) else null
         var intent = Intent(this, MainActivity::class.java)
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -60,7 +65,12 @@ class AppFirebaseMessagingService: FirebaseMessagingService() {
             .setDefaults(DEFAULT_VIBRATE)
             .setStyle(NotificationCompat.BigTextStyle().bigText(body))
             .setSmallIcon(R.drawable.ic_menu)
-            .setLargeIcon(BitmapFactory.decodeResource(applicationContext.resources, R.drawable.ic_menu))
+            .setLargeIcon(
+                BitmapFactory.decodeResource(
+                    applicationContext.resources,
+                    R.drawable.ic_menu
+                )
+            )
             .setContentTitle(title)
             .setContentText(body)
             .setAutoCancel(true)
@@ -71,7 +81,7 @@ class AppFirebaseMessagingService: FirebaseMessagingService() {
             .setContentIntent(pendingIntent)
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
                 "${BuildConfig.APPLICATION_ID} channel",

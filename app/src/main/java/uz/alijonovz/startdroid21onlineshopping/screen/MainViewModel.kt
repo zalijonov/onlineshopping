@@ -12,7 +12,7 @@ import uz.alijonovz.startdroid21onlineshopping.model.CategoryModel
 import uz.alijonovz.startdroid21onlineshopping.model.OfferModel
 import uz.alijonovz.startdroid21onlineshopping.model.ProductModel
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
 
     val repository = ShopRepository()
     val error = MutableLiveData<String>()
@@ -22,52 +22,57 @@ class MainViewModel: ViewModel() {
     val productData = MutableLiveData<List<ProductModel>>()
     val progress = MutableLiveData<Boolean>()
 
-    fun loadOffers(){
+    fun loadOffers() {
         repository.loadOffers(error, progress, offersData)
     }
 
-    fun loadCategories(){
+    fun loadCategories() {
         repository.loadCategories(error, categoriesData)
     }
 
-    fun loadTopProducts(){
+    fun loadTopProducts() {
         repository.loadTopProducts(error, topProductData)
     }
 
-    fun loadCategoryProducts(id: Int){
+    fun loadCategoryProducts(id: Int) {
         repository.loadCategoryProducts(id, error, topProductData)
     }
 
-    fun loadProductByIds(ids: List<Int>){
+    fun loadProductByIds(ids: List<Int>) {
         repository.loadProductsByIds(ids, error, progress, productData)
     }
 
-    fun loadFavProductsByIds(ids: List<Int>){
+    fun loadFavProductsByIds(ids: List<Int>) {
         repository.loadFavProductsByIds(ids, error, progress, topProductData)
     }
 
-    fun insertAllProducts2DB(items: List<ProductModel>){
-        CoroutineScope(Dispatchers.IO).launch{
+    fun insertAllProducts2DB(items: List<ProductModel>) {
+        CoroutineScope(Dispatchers.IO).launch {
             AppDatabase.getDatabase().getProductDao().deleteAll()
             AppDatabase.getDatabase().getProductDao().insertAll(items)
         }
     }
 
-    fun insertAllCategories2DB(items: List<CategoryModel>){
-        CoroutineScope(Dispatchers.IO).launch{
+    fun insertAllCategories2DB(items: List<CategoryModel>) {
+        CoroutineScope(Dispatchers.IO).launch {
             AppDatabase.getDatabase().getCategoryDao().deleteAll()
             AppDatabase.getDatabase().getCategoryDao().insertAll(items)
         }
     }
 
-    fun loadAllDBProducts(){
-        CoroutineScope(Dispatchers.Main).launch{
-            topProductData.value = withContext(Dispatchers.IO){AppDatabase.getDatabase().getProductDao().getAllProducts()}!!
+    fun loadAllDBProducts() {
+        CoroutineScope(Dispatchers.Main).launch {
+            topProductData.value = withContext(Dispatchers.IO) {
+                AppDatabase.getDatabase().getProductDao().getAllProducts()
+            }!!
         }
     }
-    fun loadAllDBCategories(){
-        CoroutineScope(Dispatchers.Main).launch{
-            categoriesData.value = withContext(Dispatchers.IO){AppDatabase.getDatabase().getCategoryDao().getAllCategories()}!!
+
+    fun loadAllDBCategories() {
+        CoroutineScope(Dispatchers.Main).launch {
+            categoriesData.value = withContext(Dispatchers.IO) {
+                AppDatabase.getDatabase().getCategoryDao().getAllCategories()
+            }!!
         }
     }
 }

@@ -20,14 +20,17 @@ class ShopRepository {
 
     val compositeDisposable = CompositeDisposable()
 
-    fun loadTopProducts(error: MutableLiveData<String>, success: MutableLiveData<List<ProductModel>>){
+    fun loadTopProducts(
+        error: MutableLiveData<String>,
+        success: MutableLiveData<List<ProductModel>>
+    ) {
         compositeDisposable.add(
             ApiService.apiClient().getTopProducts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<BaseResponse<List<ProductModel>>>(){
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<ProductModel>>>() {
                     override fun onNext(t: BaseResponse<List<ProductModel>>) {
-                        if(t.success){
+                        if (t.success) {
                             success.value = t.data
                         } else {
                             error.value = t.message
@@ -45,36 +48,44 @@ class ShopRepository {
         )
     }
 
-    fun loadOffers(error: MutableLiveData<String>, progress:MutableLiveData<Boolean>, success: MutableLiveData<List<OfferModel>>){
+    fun loadOffers(
+        error: MutableLiveData<String>,
+        progress: MutableLiveData<Boolean>,
+        success: MutableLiveData<List<OfferModel>>
+    ) {
         progress.value = true
-        ApiService.apiClient().getOffers().enqueue(object: Callback<BaseResponse<List<OfferModel>>>{
-            override fun onResponse(
-                call: Call<BaseResponse<List<OfferModel>>>,
-                response: Response<BaseResponse<List<OfferModel>>>
-            ) {
-                progress.value = false
-                if(response.isSuccessful && response.body()!!.success){
-                    success.value = response.body()?.data ?: emptyList()
-                } else {
-                    error.value = response.message()
+        ApiService.apiClient().getOffers()
+            .enqueue(object : Callback<BaseResponse<List<OfferModel>>> {
+                override fun onResponse(
+                    call: Call<BaseResponse<List<OfferModel>>>,
+                    response: Response<BaseResponse<List<OfferModel>>>
+                ) {
+                    progress.value = false
+                    if (response.isSuccessful && response.body()!!.success) {
+                        success.value = response.body()?.data ?: emptyList()
+                    } else {
+                        error.value = response.message()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<BaseResponse<List<OfferModel>>>, t: Throwable) {
-                error.value = t.localizedMessage
-            }
+                override fun onFailure(call: Call<BaseResponse<List<OfferModel>>>, t: Throwable) {
+                    error.value = t.localizedMessage
+                }
 
-        })
+            })
     }
 
-    fun loadCategories(error: MutableLiveData<String>, success: MutableLiveData<List<CategoryModel>>){
+    fun loadCategories(
+        error: MutableLiveData<String>,
+        success: MutableLiveData<List<CategoryModel>>
+    ) {
         compositeDisposable.add(
             ApiService.apiClient().getCategories()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<BaseResponse<List<CategoryModel>>>(){
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<CategoryModel>>>() {
                     override fun onNext(t: BaseResponse<List<CategoryModel>>) {
-                        if(t.success){
+                        if (t.success) {
                             success.value = t.data
                         } else {
                             error.value = t.message
@@ -92,14 +103,18 @@ class ShopRepository {
         )
     }
 
-    fun loadCategoryProducts(id:Int, error: MutableLiveData<String>, success: MutableLiveData<List<ProductModel>>){
+    fun loadCategoryProducts(
+        id: Int,
+        error: MutableLiveData<String>,
+        success: MutableLiveData<List<ProductModel>>
+    ) {
         compositeDisposable.add(
             ApiService.apiClient().getCategoryProducts(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<BaseResponse<List<ProductModel>>>(){
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<ProductModel>>>() {
                     override fun onNext(t: BaseResponse<List<ProductModel>>) {
-                        if(t.success){
+                        if (t.success) {
                             success.value = t.data
                         } else {
                             error.value = t.message
@@ -117,16 +132,21 @@ class ShopRepository {
         )
     }
 
-    fun loadProductsByIds(ids: List<Int>, error: MutableLiveData<String>, progress: MutableLiveData<Boolean>, success: MutableLiveData<List<ProductModel>>){
+    fun loadProductsByIds(
+        ids: List<Int>,
+        error: MutableLiveData<String>,
+        progress: MutableLiveData<Boolean>,
+        success: MutableLiveData<List<ProductModel>>
+    ) {
         progress.value = true
         compositeDisposable.add(
             ApiService.apiClient().getProductsByIds(GetProductsByIdsRequest(ids))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<BaseResponse<List<ProductModel>>>(){
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<ProductModel>>>() {
                     override fun onNext(t: BaseResponse<List<ProductModel>>) {
                         progress.value = false
-                        if(t.success){
+                        if (t.success) {
                             PrefUtils.getCartList().forEach { cartProducts ->
                                 val carts =
                                     t.data.filter { cartProducts.product_id == it.id }.firstOrNull()
@@ -153,16 +173,21 @@ class ShopRepository {
         )
     }
 
-    fun loadFavProductsByIds(ids: List<Int>, error: MutableLiveData<String>, progress: MutableLiveData<Boolean>, success: MutableLiveData<List<ProductModel>>){
+    fun loadFavProductsByIds(
+        ids: List<Int>,
+        error: MutableLiveData<String>,
+        progress: MutableLiveData<Boolean>,
+        success: MutableLiveData<List<ProductModel>>
+    ) {
         progress.value = true
         compositeDisposable.add(
             ApiService.apiClient().getProductsByIds(GetProductsByIdsRequest(ids))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableObserver<BaseResponse<List<ProductModel>>>(){
+                .subscribeWith(object : DisposableObserver<BaseResponse<List<ProductModel>>>() {
                     override fun onNext(t: BaseResponse<List<ProductModel>>) {
                         progress.value = false
-                        if(t.success){
+                        if (t.success) {
                             success.value = t.data
                         } else {
                             error.value = t.message

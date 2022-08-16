@@ -14,4 +14,4 @@ data class ProductModel(
     val image: String,
     val category_id: String,
     var cartCount: Int
-): Serializable
+) : Serializable

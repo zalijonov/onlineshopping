@@ -8,12 +8,19 @@ import uz.alijonovz.startdroid21onlineshopping.databinding.CartItemLayoutBinding
 import uz.alijonovz.startdroid21onlineshopping.model.ProductModel
 import uz.alijonovz.startdroid21onlineshopping.utils.Constants
 
-class CartAdapter(var items: List<ProductModel>): RecyclerView.Adapter<CartAdapter.ItemHolder>() {
+class CartAdapter(var items: List<ProductModel>) : RecyclerView.Adapter<CartAdapter.ItemHolder>() {
 
-    inner class ItemHolder(var binding:CartItemLayoutBinding): RecyclerView.ViewHolder(binding.root)
+    inner class ItemHolder(var binding: CartItemLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder(CartItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ItemHolder(
+            CartItemLayoutBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
@@ -22,7 +29,8 @@ class CartAdapter(var items: List<ProductModel>): RecyclerView.Adapter<CartAdapt
         holder.binding.tvPrice.text = item.price
         holder.binding.tvName.text = item.name
 
-        Glide.with(holder.itemView).load(Constants.HOST_IMAGE + item.image).into(holder.binding.imgProduct)
+        Glide.with(holder.itemView).load(Constants.HOST_IMAGE + item.image)
+            .into(holder.binding.imgProduct)
 
         holder.binding.tvCount.text = item.cartCount.toString()
     }

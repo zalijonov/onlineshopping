@@ -12,8 +12,8 @@ import uz.alijonovz.startdroid21onlineshopping.utils.Constants
 object ApiService {
     var retrofit: Retrofit? = null
 
-    fun apiClient(): Api{
-        if (retrofit == null){
+    fun apiClient(): Api {
+        if (retrofit == null) {
             val client = OkHttpClient.Builder()
                 .addInterceptor(
                     ChuckerInterceptor.Builder(App.app)
@@ -24,7 +24,7 @@ object ApiService {
                         .build()
                 )
                 .build()
-            retrofit =Retrofit.Builder()
+            retrofit = Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())

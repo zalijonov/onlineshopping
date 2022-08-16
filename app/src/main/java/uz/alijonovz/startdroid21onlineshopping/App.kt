@@ -6,10 +6,11 @@ import com.orhanobut.hawk.Hawk
 import uz.alijonovz.startdroid21onlineshopping.api.db.AppDatabase
 
 
-class App: MultiDexApplication() {
-    companion object{
+class App : MultiDexApplication() {
+    companion object {
         lateinit var app: App
     }
+
     override fun onCreate() {
         super.onCreate()
         app = this

@@ -1,9 +1,9 @@
 package uz.alijonovz.startdroid21onlineshopping.screen
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -13,7 +13,7 @@ import uz.alijonovz.startdroid21onlineshopping.screen.changelanguage.ChangeLangu
 import uz.alijonovz.startdroid21onlineshopping.utils.LocaleManager
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding:ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,17 +24,17 @@ class MainActivity : AppCompatActivity() {
         viewModel = MainViewModel()
 
 
-        viewModel.topProductData.observe(this, Observer{
+        viewModel.topProductData.observe(this, Observer {
             viewModel.insertAllProducts2DB(it)
 //            HomeFragment.newInstance().loadData()
         })
 
-        viewModel.categoriesData.observe(this, Observer{
+        viewModel.categoriesData.observe(this, Observer {
             viewModel.insertAllCategories2DB(it)
 //            HomeFragment.newInstance().loadData()
         })
 
-        viewModel.error.observe(this, Observer{
+        viewModel.error.observe(this, Observer {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         })
 
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun loadData(){
+    fun loadData() {
         viewModel.loadTopProducts()
         viewModel.loadCategories()
     }

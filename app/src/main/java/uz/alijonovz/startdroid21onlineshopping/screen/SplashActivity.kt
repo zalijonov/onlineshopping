@@ -1,8 +1,8 @@
 package uz.alijonovz.startdroid21onlineshopping.screen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import uz.alijonovz.startdroid21onlineshopping.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
