@@ -2,27 +2,25 @@ package uz.alijonovz.startdroid21onlineshopping.screen.makeorder
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import uz.alijonovz.startdroid21onlineshopping.MapsActivity
 import uz.alijonovz.startdroid21onlineshopping.databinding.ActivityMakeOrderBinding
 import uz.alijonovz.startdroid21onlineshopping.model.AddressModel
 import uz.alijonovz.startdroid21onlineshopping.model.ProductModel
+import uz.alijonovz.startdroid21onlineshopping.utils.BaseActivity
 import uz.alijonovz.startdroid21onlineshopping.utils.Constants
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
-class MakeOrderActivity : AppCompatActivity() {
+class MakeOrderActivity : BaseActivity<ActivityMakeOrderBinding>() {
     var address: AddressModel? = null
     lateinit var items: List<ProductModel>
-    lateinit var binding: ActivityMakeOrderBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMakeOrderBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+    override fun getViewBinding(): ActivityMakeOrderBinding =
+        ActivityMakeOrderBinding.inflate(layoutInflater)
+
+    override fun initView() {
         items = intent.getSerializableExtra(Constants.EXTRA_DATA) as List<ProductModel>
         if (!EventBus.getDefault().isRegistered((this))) {
             EventBus.getDefault().register(this)
@@ -42,6 +40,14 @@ class MakeOrderActivity : AppCompatActivity() {
         binding.cardViewBack.setOnClickListener {
             finish()
         }
+    }
+
+    override fun loadData() {
+
+    }
+
+    override fun updateData() {
+
     }
 
     override fun onDestroy() {

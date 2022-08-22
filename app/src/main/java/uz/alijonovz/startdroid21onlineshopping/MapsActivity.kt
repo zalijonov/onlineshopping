@@ -1,26 +1,20 @@
 package uz.alijonovz.startdroid21onlineshopping
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import org.greenrobot.eventbus.EventBus
 import uz.alijonovz.startdroid21onlineshopping.databinding.ActivityMapsBinding
 import uz.alijonovz.startdroid21onlineshopping.model.AddressModel
+import uz.alijonovz.startdroid21onlineshopping.utils.BaseActivity
 
-class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+class MapsActivity : BaseActivity<ActivityMapsBinding>(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityMapsBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun getViewBinding(): ActivityMapsBinding = ActivityMapsBinding.inflate(layoutInflater)
 
-        binding = ActivityMapsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+    override fun initView() {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -36,10 +30,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    override fun loadData() {
+
+    }
+
+    override fun updateData() {
+
+    }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-
     }
 }

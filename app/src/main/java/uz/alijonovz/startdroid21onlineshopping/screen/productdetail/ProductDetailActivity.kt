@@ -1,23 +1,21 @@
 package uz.alijonovz.startdroid21onlineshopping.screen.productdetail
 
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import uz.alijonovz.startdroid21onlineshopping.R
 import uz.alijonovz.startdroid21onlineshopping.databinding.ActivityProductDetailBinding
 import uz.alijonovz.startdroid21onlineshopping.model.ProductModel
+import uz.alijonovz.startdroid21onlineshopping.utils.BaseActivity
 import uz.alijonovz.startdroid21onlineshopping.utils.Constants
 import uz.alijonovz.startdroid21onlineshopping.utils.PrefUtils
 
-class ProductDetailActivity : AppCompatActivity() {
+class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
     lateinit var item: ProductModel
-    lateinit var binding: ActivityProductDetailBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityProductDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun getViewBinding(): ActivityProductDetailBinding =
+        ActivityProductDetailBinding.inflate(layoutInflater)
+
+    override fun initView() {
         var count = 0
         binding.cardViewBack.setOnClickListener {
             finish()
@@ -56,4 +54,13 @@ class ProductDetailActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun loadData() {
+
+    }
+
+    override fun updateData() {
+
+    }
+
 }
