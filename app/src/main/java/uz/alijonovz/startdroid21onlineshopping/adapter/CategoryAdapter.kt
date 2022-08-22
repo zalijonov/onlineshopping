@@ -4,36 +4,29 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import uz.alijonovz.startdroid21onlineshopping.R
 import uz.alijonovz.startdroid21onlineshopping.databinding.CategoryItemLayoutBinding
 import uz.alijonovz.startdroid21onlineshopping.model.CategoryModel
+import uz.alijonovz.startdroid21onlineshopping.utils.BaseAdapter
 
 interface CategoryAdapterCallback {
     fun onClickItem(item: CategoryModel)
 }
 
-class CategoryAdapter(var items: List<CategoryModel>, val callback: CategoryAdapterCallback) :
-    RecyclerView.Adapter<CategoryAdapter.ItemHolder>() {
+class CategoryAdapter(var items1: List<CategoryModel>, val callback: CategoryAdapterCallback) :
+    BaseAdapter<CategoryItemLayoutBinding>(items1) {
 
-    inner class ItemHolder(var binding: CategoryItemLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    override fun getBinding(parent: ViewGroup): CategoryItemLayoutBinding =
+        CategoryItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder(
-            CategoryItemLayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        var item = items[position]
+    override fun onBindViewHolder(
+        holder: BaseAdapter<CategoryItemLayoutBinding>.ItemHolder<CategoryItemLayoutBinding>,
+        position: Int
+    ) {
+        var item = items1[position]
 
         holder.binding.cardView.setOnClickListener {
-            items.forEach {
+            items1.forEach {
                 it.checked = false
             }
             item.checked = true
@@ -61,7 +54,7 @@ class CategoryAdapter(var items: List<CategoryModel>, val callback: CategoryAdap
         holder.binding.tvName.text = item.title
     }
 
-    override fun getItemCount(): Int {
-        return items.count()
+    override fun initItemData(item: Any) {
+
     }
 }

@@ -2,29 +2,22 @@ package uz.alijonovz.startdroid21onlineshopping.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.alijonovz.startdroid21onlineshopping.databinding.CartItemLayoutBinding
 import uz.alijonovz.startdroid21onlineshopping.model.ProductModel
+import uz.alijonovz.startdroid21onlineshopping.utils.BaseAdapter
 import uz.alijonovz.startdroid21onlineshopping.utils.Constants
 
-class CartAdapter(var items: List<ProductModel>) : RecyclerView.Adapter<CartAdapter.ItemHolder>() {
+class CartAdapter(var items1: List<ProductModel>) : BaseAdapter<CartItemLayoutBinding>(items1) {
 
-    inner class ItemHolder(var binding: CartItemLayoutBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    override fun getBinding(parent: ViewGroup): CartItemLayoutBinding =
+        CartItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
-        return ItemHolder(
-            CartItemLayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        var item = items[position]
+    override fun onBindViewHolder(
+        holder: BaseAdapter<CartItemLayoutBinding>.ItemHolder<CartItemLayoutBinding>,
+        position: Int
+    ) {
+        var item = items1[position]
 
         holder.binding.tvPrice.text = item.price
         holder.binding.tvName.text = item.name
@@ -37,5 +30,9 @@ class CartAdapter(var items: List<ProductModel>) : RecyclerView.Adapter<CartAdap
 
     override fun getItemCount(): Int {
         return items.count()
+    }
+
+    override fun initItemData(item: Any) {
+
     }
 }
