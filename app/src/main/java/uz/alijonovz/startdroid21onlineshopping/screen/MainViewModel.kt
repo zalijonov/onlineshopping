@@ -1,5 +1,6 @@
 package uz.alijonovz.startdroid21onlineshopping.screen
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -15,35 +16,52 @@ import uz.alijonovz.startdroid21onlineshopping.model.ProductModel
 class MainViewModel : ViewModel() {
 
     val repository = ShopRepository()
-    val error = MutableLiveData<String>()
-    val offersData = MutableLiveData<List<OfferModel>>()
-    val categoriesData = MutableLiveData<List<CategoryModel>>()
-    val topProductData = MutableLiveData<List<ProductModel>>()
-    val productData = MutableLiveData<List<ProductModel>>()
-    val progress = MutableLiveData<Boolean>()
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String>
+    get() = _error
+
+    private val _offersData = MutableLiveData<List<OfferModel>>()
+    val offersData: LiveData<List<OfferModel>>
+    get() = _offersData
+
+    private val _categoriesData = MutableLiveData<List<CategoryModel>>()
+    val categoriesData: LiveData<List<CategoryModel>>
+    get() = _categoriesData
+
+    private val _topProductData = MutableLiveData<List<ProductModel>>()
+    val topProductData: LiveData<List<ProductModel>>
+    get() = _topProductData
+
+    private val _productData = MutableLiveData<List<ProductModel>>()
+    val productData: LiveData<List<ProductModel>>
+    get() = _productData
+
+    private val _progress = MutableLiveData<Boolean>()
+    val progress: LiveData<Boolean>
+    get() = _progress
 
     fun loadOffers() {
-        repository.loadOffers(error, progress, offersData)
+        repository.loadOffers(_error, _progress, _offersData)
     }
 
     fun loadCategories() {
-        repository.loadCategories(error, categoriesData, progress)
+        repository.loadCategories(_error, _categoriesData, _progress)
     }
 
     fun loadTopProducts() {
-        repository.loadTopProducts(error, topProductData, progress)
+        repository.loadTopProducts(_error, _topProductData, _progress)
     }
 
     fun loadCategoryProducts(id: Int) {
-        repository.loadCategoryProducts(id, error, topProductData, progress)
+        repository.loadCategoryProducts(id, _error, _topProductData, _progress)
     }
 
     fun loadProductByIds(ids: List<Int>) {
-        repository.loadProductsByIds(ids, error, progress, productData)
+        repository.loadProductsByIds(ids, _error, _progress, _productData)
     }
 
     fun loadFavProductsByIds(ids: List<Int>) {
-        repository.loadFavProductsByIds(ids, error, progress, topProductData)
+        repository.loadFavProductsByIds(ids, _error, _progress, _topProductData)
     }
 
     fun insertAllProducts2DB(items: List<ProductModel>) {
@@ -62,7 +80,7 @@ class MainViewModel : ViewModel() {
 
     fun loadAllDBProducts() {
         CoroutineScope(Dispatchers.Main).launch {
-            topProductData.value = withContext(Dispatchers.IO) {
+            _topProductData.value = withContext(Dispatchers.IO) {
                 AppDatabase.getDatabase().getProductDao().getAllProducts()
             }!!
         }
@@ -70,7 +88,7 @@ class MainViewModel : ViewModel() {
 
     fun loadAllDBCategories() {
         CoroutineScope(Dispatchers.Main).launch {
-            categoriesData.value = withContext(Dispatchers.IO) {
+            _categoriesData.value = withContext(Dispatchers.IO) {
                 AppDatabase.getDatabase().getCategoryDao().getAllCategories()
             }!!
         }
