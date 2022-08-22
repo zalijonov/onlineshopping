@@ -27,15 +27,15 @@ class MainViewModel : ViewModel() {
     }
 
     fun loadCategories() {
-        repository.loadCategories(error, categoriesData)
+        repository.loadCategories(error, categoriesData, progress)
     }
 
     fun loadTopProducts() {
-        repository.loadTopProducts(error, topProductData)
+        repository.loadTopProducts(error, topProductData, progress)
     }
 
     fun loadCategoryProducts(id: Int) {
-        repository.loadCategoryProducts(id, error, topProductData)
+        repository.loadCategoryProducts(id, error, topProductData, progress)
     }
 
     fun loadProductByIds(ids: List<Int>) {
