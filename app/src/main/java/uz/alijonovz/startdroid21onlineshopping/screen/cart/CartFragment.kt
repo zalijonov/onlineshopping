@@ -3,10 +3,8 @@ package uz.alijonovz.startdroid21onlineshopping.screen.cart
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,13 +13,13 @@ import uz.alijonovz.startdroid21onlineshopping.databinding.FragmentCartBinding
 import uz.alijonovz.startdroid21onlineshopping.model.ProductModel
 import uz.alijonovz.startdroid21onlineshopping.screen.MainViewModel
 import uz.alijonovz.startdroid21onlineshopping.screen.makeorder.MakeOrderActivity
+import uz.alijonovz.startdroid21onlineshopping.utils.BaseFragment
 import uz.alijonovz.startdroid21onlineshopping.utils.Constants
 import uz.alijonovz.startdroid21onlineshopping.utils.PrefUtils
 import java.io.Serializable
 
-class CartFragment : Fragment() {
+class CartFragment : BaseFragment<FragmentCartBinding>() {
 
-    lateinit var binding: FragmentCartBinding
     lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,17 +28,14 @@ class CartFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentCartBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
-        return binding.root
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentCartBinding {
+        return FragmentCartBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
 
         viewModel.progress.observe(requireActivity(), Observer {
@@ -57,7 +52,6 @@ class CartFragment : Fragment() {
         binding.btnMakeOrder.setOnClickListener {
             startActivity(Intent(requireActivity(), MakeOrderActivity::class.java))
         }
-        loadData()
         binding.swipe.setOnRefreshListener {
             loadData()
         }
@@ -72,12 +66,16 @@ class CartFragment : Fragment() {
         }
     }
 
-    fun loadData() {
+    override fun loadData() {
         viewModel.loadProductByIds(PrefUtils.getCartList().map { it.product_id })
     }
 
-    companion object {
+    override fun loadUpdate() {
 
+    }
+
+
+    companion object {
         @JvmStatic
         fun newInstance() = CartFragment()
     }

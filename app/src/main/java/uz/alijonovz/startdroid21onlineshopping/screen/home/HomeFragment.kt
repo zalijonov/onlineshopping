@@ -2,10 +2,8 @@ package uz.alijonovz.startdroid21onlineshopping.screen.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,10 +11,10 @@ import uz.alijonovz.startdroid21onlineshopping.adapter.*
 import uz.alijonovz.startdroid21onlineshopping.databinding.FragmentHomeBinding
 import uz.alijonovz.startdroid21onlineshopping.model.CategoryModel
 import uz.alijonovz.startdroid21onlineshopping.screen.MainViewModel
+import uz.alijonovz.startdroid21onlineshopping.utils.BaseFragment
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    lateinit var binding: FragmentHomeBinding
     lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,17 +22,14 @@ class HomeFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
-        return binding.root
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initView() {
 
         binding.swipe.setOnRefreshListener {
             loadData()
@@ -67,16 +62,18 @@ class HomeFragment : Fragment() {
             binding.tvProduct.adapter = ProductAdapter(it)
         })
 
-        loadData()
-
     }
 
-    fun loadData() {
+    override fun loadData() {
 //        viewModel.loadCategories()
         viewModel.loadOffers()
 //        viewModel.loadTopProducts()
         viewModel.loadAllDBProducts()
         viewModel.loadAllDBCategories()
+
+    }
+
+    override fun loadUpdate() {
 
     }
 

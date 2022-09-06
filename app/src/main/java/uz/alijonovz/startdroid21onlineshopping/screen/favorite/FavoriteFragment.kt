@@ -2,21 +2,19 @@ package uz.alijonovz.startdroid21onlineshopping.screen.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import uz.alijonovz.startdroid21onlineshopping.adapter.ProductAdapter
 import uz.alijonovz.startdroid21onlineshopping.databinding.FragmentFavoriteBinding
 import uz.alijonovz.startdroid21onlineshopping.screen.MainViewModel
+import uz.alijonovz.startdroid21onlineshopping.utils.BaseFragment
 import uz.alijonovz.startdroid21onlineshopping.utils.PrefUtils
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
 
-    lateinit var binding: FragmentFavoriteBinding
     lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,27 +33,27 @@ class FavoriteFragment : Fragment() {
         })
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
-        return binding.root
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentFavoriteBinding {
+        return FragmentFavoriteBinding.inflate(inflater, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
 
         binding.swipe.setOnRefreshListener {
             loadData()
         }
-        loadData()
     }
 
-    fun loadData() {
+    override fun loadData() {
         viewModel.loadFavProductsByIds(PrefUtils.getFavoriteList())
+    }
+
+    override fun loadUpdate() {
+
     }
 
     companion object {

@@ -2,7 +2,6 @@ package uz.alijonovz.startdroid21onlineshopping.api.repository
 
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
@@ -16,7 +15,7 @@ import uz.alijonovz.startdroid21onlineshopping.model.ProductModel
 import uz.alijonovz.startdroid21onlineshopping.model.request.GetProductsByIdsRequest
 import uz.alijonovz.startdroid21onlineshopping.utils.PrefUtils
 
-class ShopRepository: BaseRepository() {
+class ShopRepository : BaseRepository() {
 
     fun loadTopProducts(
         error: MutableLiveData<String>,
@@ -117,6 +116,11 @@ class ShopRepository: BaseRepository() {
         progress: MutableLiveData<Boolean>,
         success: MutableLiveData<List<ProductModel>>
     ) {
-        sendCall(ApiService.apiClient().getProductsByIds(GetProductsByIdsRequest(ids)), error, success, progress)
+        sendCall(
+            ApiService.apiClient().getProductsByIds(GetProductsByIdsRequest(ids)),
+            error,
+            success,
+            progress
+        )
     }
 }

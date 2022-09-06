@@ -28,10 +28,6 @@ class CartAdapter(var items1: List<ProductModel>) : BaseAdapter<CartItemLayoutBi
         holder.binding.tvCount.text = item.cartCount.toString()
     }
 
-    override fun getItemCount(): Int {
-        return items.count()
-    }
-
     override fun initItemData(item: Any) {
 
     }

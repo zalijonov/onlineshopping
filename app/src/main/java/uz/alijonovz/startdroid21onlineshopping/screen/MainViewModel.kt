@@ -18,27 +18,27 @@ class MainViewModel : ViewModel() {
     val repository = ShopRepository()
     private val _error = MutableLiveData<String>()
     val error: LiveData<String>
-    get() = _error
+        get() = _error
 
     private val _offersData = MutableLiveData<List<OfferModel>>()
     val offersData: LiveData<List<OfferModel>>
-    get() = _offersData
+        get() = _offersData
 
     private val _categoriesData = MutableLiveData<List<CategoryModel>>()
     val categoriesData: LiveData<List<CategoryModel>>
-    get() = _categoriesData
+        get() = _categoriesData
 
     private val _topProductData = MutableLiveData<List<ProductModel>>()
     val topProductData: LiveData<List<ProductModel>>
-    get() = _topProductData
+        get() = _topProductData
 
     private val _productData = MutableLiveData<List<ProductModel>>()
     val productData: LiveData<List<ProductModel>>
-    get() = _productData
+        get() = _productData
 
     private val _progress = MutableLiveData<Boolean>()
     val progress: LiveData<Boolean>
-    get() = _progress
+        get() = _progress
 
     fun loadOffers() {
         repository.loadOffers(_error, _progress, _offersData)
