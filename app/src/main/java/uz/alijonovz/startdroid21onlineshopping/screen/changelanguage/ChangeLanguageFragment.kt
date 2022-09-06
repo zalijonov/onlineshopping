@@ -20,7 +20,6 @@ class ChangeLanguageFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentChangeLanguageBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -41,7 +40,6 @@ class ChangeLanguageFragment : BottomSheetDialogFragment() {
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance() = ChangeLanguageFragment()
     }
