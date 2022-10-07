@@ -37,9 +37,7 @@ class MakeOrderActivity : BaseActivity<ActivityMakeOrderBinding>() {
             startActivity(Intent(this, MapsActivity::class.java))
         }
 
-        binding.cardViewBack.setOnClickListener {
-            finish()
-        }
+        binding.cardViewBack.setOnClickListener { finish() }
     }
 
     override fun loadData() {

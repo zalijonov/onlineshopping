@@ -15,15 +15,12 @@ class MapsActivity : BaseActivity<ActivityMapsBinding>(), OnMapReadyCallback {
     override fun getViewBinding(): ActivityMapsBinding = ActivityMapsBinding.inflate(layoutInflater)
 
     override fun initView() {
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         binding.btnConfirm.setOnClickListener {
             val addressModel = AddressModel(
-                "",
-                mMap.cameraPosition.target.latitude,
-                mMap.cameraPosition.target.longitude
+                "", mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude
             )
             EventBus.getDefault().post(addressModel)
             finish()

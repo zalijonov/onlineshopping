@@ -16,9 +16,7 @@ class ProductAdapter(var items1: List<ProductModel>) :
     override fun getBinding(parent: ViewGroup): ProductItemLayoutBinding =
         ProductItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-    override fun initItemData(item: Any) {
-
-    }
+    override fun initItemData(item: Any) {}
 
     override fun onBindViewHolder(
         holder: BaseAdapter<ProductItemLayoutBinding>.ItemHolder<ProductItemLayoutBinding>,

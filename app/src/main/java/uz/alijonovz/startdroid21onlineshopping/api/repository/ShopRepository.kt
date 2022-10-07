@@ -78,8 +78,7 @@ class ShopRepository : BaseRepository() {
         progress.value = true
         compositeDisposable.add(
             ApiService.apiClient().getProductsByIds(GetProductsByIdsRequest(ids))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableObserver<BaseResponse<List<ProductModel>>>() {
                     override fun onNext(t: BaseResponse<List<ProductModel>>) {
                         progress.value = false

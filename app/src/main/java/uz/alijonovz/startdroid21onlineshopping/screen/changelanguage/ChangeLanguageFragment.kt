@@ -16,8 +16,7 @@ class ChangeLanguageFragment : BottomSheetDialogFragment() {
     lateinit var binding: FragmentChangeLanguageBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = FragmentChangeLanguageBinding.inflate(inflater, container, false)
         return binding.root

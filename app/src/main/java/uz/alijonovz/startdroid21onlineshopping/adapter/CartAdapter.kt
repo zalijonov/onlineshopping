@@ -14,8 +14,7 @@ class CartAdapter(var items1: List<ProductModel>) : BaseAdapter<CartItemLayoutBi
         CartItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
     override fun onBindViewHolder(
-        holder: BaseAdapter<CartItemLayoutBinding>.ItemHolder<CartItemLayoutBinding>,
-        position: Int
+        holder: BaseAdapter<CartItemLayoutBinding>.ItemHolder<CartItemLayoutBinding>, position: Int
     ) {
         var item = items1[position]
 

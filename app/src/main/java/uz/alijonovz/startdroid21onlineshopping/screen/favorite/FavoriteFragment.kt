@@ -20,22 +20,19 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.topProductData.observe(this, Observer {
+        viewModel.topProductData.observe(this) {
             binding.recyclerView.adapter = ProductAdapter(it)
-        })
+        }
 
         viewModel.error.observe(this, Observer {
             Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
         })
 
-        viewModel.progress.observe(this, Observer {
-            binding.swipe.isRefreshing = it
-        })
+        viewModel.progress.observe(this, Observer { binding.swipe.isRefreshing = it })
     }
 
     override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
+        inflater: LayoutInflater, container: ViewGroup?
     ): FragmentFavoriteBinding {
         return FragmentFavoriteBinding.inflate(inflater, container, false)
     }
@@ -43,9 +40,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>() {
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
 
-        binding.swipe.setOnRefreshListener {
-            loadData()
-        }
+        binding.swipe.setOnRefreshListener { loadData() }
     }
 
     override fun loadData() {

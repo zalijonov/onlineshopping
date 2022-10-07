@@ -34,8 +34,7 @@ class AppFirebaseMessagingService : FirebaseMessagingService() {
             val title = remoteMessage.notification?.title
             val body = remoteMessage.notification?.body
             showMessage(
-                title ?: "",
-                body ?: ""
+                title ?: "", body ?: ""
             )
         } catch (e: Exception) {
             e.printStackTrace()
@@ -54,31 +53,20 @@ class AppFirebaseMessagingService : FirebaseMessagingService() {
 
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(
-            this,
-            0,
-            intent,
-            PendingIntent.FLAG_ONE_SHOT
+            this, 0, intent, PendingIntent.FLAG_ONE_SHOT
         )
 
         val channelId = BuildConfig.APPLICATION_ID
-        val builder = NotificationCompat.Builder(this, channelId)
-            .setDefaults(DEFAULT_VIBRATE)
+        val builder = NotificationCompat.Builder(this, channelId).setDefaults(DEFAULT_VIBRATE)
             .setStyle(NotificationCompat.BigTextStyle().bigText(body))
-            .setSmallIcon(R.drawable.ic_menu)
-            .setLargeIcon(
+            .setSmallIcon(R.drawable.ic_menu).setLargeIcon(
                 BitmapFactory.decodeResource(
-                    applicationContext.resources,
-                    R.drawable.ic_menu
+                    applicationContext.resources, R.drawable.ic_menu
                 )
-            )
-            .setContentTitle(title)
-            .setContentText(body)
-            .setAutoCancel(true)
-            .setColor(Color.parseColor("#FFFFFFFF"))
-            .setSound(defaultSoundUri)
+            ).setContentTitle(title).setContentText(body).setAutoCancel(true)
+            .setColor(Color.parseColor("#FFFFFFFF")).setSound(defaultSoundUri)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setVibrate(longArrayOf(100, 200, 300, 400, 500))
-            .setContentIntent(pendingIntent)
+            .setVibrate(longArrayOf(100, 200, 300, 400, 500)).setContentIntent(pendingIntent)
 
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

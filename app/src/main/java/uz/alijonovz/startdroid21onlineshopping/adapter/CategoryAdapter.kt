@@ -38,16 +38,14 @@ class CategoryAdapter(var items1: List<CategoryModel>, val callback: CategoryAda
             holder.binding.tvName.setTextColor(Color.WHITE)
             holder.binding.cardView.setCardBackgroundColor(
                 ContextCompat.getColor(
-                    holder.itemView.context,
-                    R.color.colorPrimary
+                    holder.itemView.context, R.color.colorPrimary
                 )
             )
         } else {
             holder.binding.tvName.setTextColor(Color.BLACK)
             holder.binding.cardView.setCardBackgroundColor(
                 ContextCompat.getColor(
-                    holder.itemView.context,
-                    R.color.bgWhite
+                    holder.itemView.context, R.color.bgWhite
                 )
             )
         }

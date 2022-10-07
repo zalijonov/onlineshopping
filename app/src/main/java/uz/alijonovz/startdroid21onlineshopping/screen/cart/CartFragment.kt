@@ -29,8 +29,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
     }
 
     override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?
+        inflater: LayoutInflater, container: ViewGroup?
     ): FragmentCartBinding {
         return FragmentCartBinding.inflate(inflater, container, false)
     }
@@ -38,13 +37,11 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
 
-        viewModel.progress.observe(requireActivity(), Observer {
-            binding.swipe.isRefreshing = it
-        })
+        viewModel.progress.observe(requireActivity()) { binding.swipe.isRefreshing = it }
 
-        viewModel.productData.observe(requireActivity(), Observer {
+        viewModel.productData.observe(requireActivity()) {
             binding.recyclerView.adapter = CartAdapter(it)
-        })
+        }
         viewModel.error.observe(requireActivity(), Observer {
             Toast.makeText(requireActivity(), it, Toast.LENGTH_LONG).show()
         })
@@ -52,9 +49,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>() {
         binding.btnMakeOrder.setOnClickListener {
             startActivity(Intent(requireActivity(), MakeOrderActivity::class.java))
         }
-        binding.swipe.setOnRefreshListener {
-            loadData()
-        }
+        binding.swipe.setOnRefreshListener { loadData() }
 
         binding.btnMakeOrder.setOnClickListener {
             val intent = Intent(requireActivity(), MakeOrderActivity::class.java)

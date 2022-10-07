@@ -14,22 +14,14 @@ object ApiService {
 
     fun apiClient(): Api {
         if (retrofit == null) {
-            val client = OkHttpClient.Builder()
-                .addInterceptor(
-                    ChuckerInterceptor.Builder(App.app)
-                        .collector(ChuckerCollector(App.app))
-                        .maxContentLength(250000L)
-                        .redactHeaders(emptySet())
-                        .alwaysReadResponseBody(false)
-                        .build()
-                )
-                .build()
-            retrofit = Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .client(client)
+            val client = OkHttpClient.Builder().addInterceptor(
+                ChuckerInterceptor.Builder(App.app).collector(ChuckerCollector(App.app))
+                    .maxContentLength(250000L).redactHeaders(emptySet())
+                    .alwaysReadResponseBody(false).build()
+            ).build()
+            retrofit = Retrofit.Builder().baseUrl(Constants.BASE_URL).client(client)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build()
         }
         return retrofit!!.create(Api::class.java)
     }

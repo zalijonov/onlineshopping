@@ -17,9 +17,7 @@ class ProductDetailActivity : BaseActivity<ActivityProductDetailBinding>() {
 
     override fun initView() {
         var count = 0
-        binding.cardViewBack.setOnClickListener {
-            finish()
-        }
+        binding.cardViewBack.setOnClickListener { finish() }
 
         item = intent.getSerializableExtra(Constants.EXTRA_DATA) as ProductModel
 

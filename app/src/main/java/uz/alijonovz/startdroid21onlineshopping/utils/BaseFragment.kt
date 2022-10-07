@@ -15,9 +15,7 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
     lateinit var binding: B
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         binding = getViewBinding(inflater, container)
         return binding.root

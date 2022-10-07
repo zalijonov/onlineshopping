@@ -34,8 +34,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         }
 
 
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.flContainer) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.flContainer) as NavHostFragment
         NavigationUI.setupWithNavController(binding.bottomNaviView, navHostFragment.navController)
 
         binding.menu.setOnClickListener {

@@ -35,9 +35,7 @@ fun ViewPager.autoScroll(interval: Long) {
         }
 
         override fun onPageScrolled(
-            position: Int,
-            positionOffset: Float,
-            positionOffsetPixels: Int
+            position: Int, positionOffset: Float, positionOffsetPixels: Int
         ) {
             // Not necessary
         }
