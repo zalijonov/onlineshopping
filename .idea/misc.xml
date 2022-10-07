@@ -30,10 +30,11 @@
         <entry key="..\:/Users/Aser/AndroidStudioProjects/StartDroid21OnlineShopping/app/src/main/res/layout/image_slider_item.xml" value="0.3515625" />
         <entry key="..\:/Users/Aser/AndroidStudioProjects/StartDroid21OnlineShopping/app/src/main/res/layout/product_item_layout.xml" value="0.35052083333333334" />
         <entry key="..\:/Users/Aser/AndroidStudioProjects/StartDroid21OnlineShopping/app/src/main/res/menu/bottom_navigation_view.xml" value="0.35052083333333334" />
+        <entry key="..\:/Users/zalij/AndroidStudioProjects/StartDroid21OnlineShopping/app/src/main/res/layout/activity_splash.xml" value="0.37395833333333334" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -8,7 +8,7 @@ plugins {
 
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "uz.alijonovz.startdroid21onlineshopping"
@@ -42,6 +42,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'uz.alijonovz.startdroid21onlineshopping'
 }
 
 dependencies {
